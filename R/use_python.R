@@ -20,7 +20,7 @@ use_python <- function(python, required = FALSE) {
 
   if (required)
     .globals$required_python_version <- python
-  
+
   .globals$use_python_versions <- unique(c(.globals$use_python_versions, python))
 }
 
@@ -48,10 +48,7 @@ use_virtualenv <- function(virtualenv, required = FALSE) {
     if (!file_test("-d", python_dir)) {
       stop("Directory ", virtualenv, " is not a Python virtualenv")
     }
-  }
-
-  if (required) {
-    if (!file_test("-f", file.path(python_dir, "activate_this.py"))) {
+    else if (!file_test("-f", file.path(python_dir, "activate_this.py"))) {
       warning("Directory ", virtualenv, " may not be a Python virtualenv")
     }
   }
